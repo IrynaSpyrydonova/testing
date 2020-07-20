@@ -9,22 +9,22 @@ const assert = chai.assert;
  */
 const swapem = (obj) => {
 
-  const swapped = Object._(_)
-    ._((entry) => {
-      const key = _;
-      const value = _;
-      if (_) {
-        _;
-      } else {
-        _;
-      }
-    })
-    ._((newObj, entry) => {
-      const key = _;
-      const value = _;
-      _;
-      return _;
-    }, _);
+  const swapped = Object.entries(obj)
+  .map((entry) => {
+    const key = entry[0];
+    const value = entry[1];
+    if (typeof(value) === 'string') {
+      return [value, key];
+    } else {
+      return [key, value];;
+    }
+  })
+  .reduce((newObj, entry) => {
+    const key = entry[0];
+    const value = entry[1];
+    newObj[key] = value;
+    return newObj;
+  }, {});
 
   return swapped;
 };
